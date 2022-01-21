@@ -2,10 +2,12 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View, Animated, PanResponder, ViewPropTypes } from "react-native";
+import { View, Animated, PanResponder } from "react-native";
 import Defaults from "./Defaults";
 import clamp from "clamp";
 import { styles } from "./Styles";
+
+let stylePropType = require('react-style-proptype');
 
 //Components could be unloaded and loaded and we will loose the users currentIndex, we can persist it here.
 let currentIndex = {};
@@ -14,8 +16,8 @@ let guid = 0;
 const actionShape = PropTypes.shape({
   show: PropTypes.bool,
   view: PropTypes.element, // takes priority over text + color
-  containerStyle: ViewPropTypes.style,
-  textStyle: ViewPropTypes.style,
+  containerStyle: stylePropType,
+  textStyle: stylePropType,
   text: PropTypes.string,
   color: PropTypes.string,
   onAction: PropTypes.func, // triggered on action, given card data, must return true if success
@@ -603,7 +605,7 @@ SwipeCards.propTypes = {
   onDragRelease: PropTypes.func,
   cardRemoved: PropTypes.func,
   renderCard: PropTypes.func.isRequired,
-  style: ViewPropTypes.style,
+  style: stylePropType,
   dragY: PropTypes.bool,
   smoothTransition: PropTypes.bool,
   keyExtractor: PropTypes.func.isRequired,
